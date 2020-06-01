@@ -50,16 +50,23 @@
       <canvas id="cmain">
       </canvas>
     </div>
-    <script src="sorters.js">
+    <script src="sorter.js">
     </script>
     <script src="visualiser.js">
     </script>
     <script>
-      var ctx = docuemnt.getElementById('cmain').getContext('2d');
+      var ctx = document.getElementById('cmain').getContext('2d');
+      ctx.canvas.width = document.getElementById('main').offsetWidth;
+      ctx.canvas.height = document.getElementById('main').offsetHeight;
+
+      var data = Array.from({length: 10}, () => Math.floor(Math.random() * 100));
+      var sorter = new Sorter('bubble', data);
       
-      //var vis = new Visualiser();
-      
-      ;
+      var visualiser = new Visualiser(ctx);
+      visualiser.setSorter(sorter);
+
+      visualiser.showData();
+
     </script>
   </body>
 </html>
