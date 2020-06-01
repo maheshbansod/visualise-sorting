@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>
+      Sorting algorithms visualised
+    </title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="tooldiv">
+      <div class="tool">
+        <button>Upload data</button> <button>Generate random data</button>
+      </div>
+      <div class="tool">
+        Data as
+        <select>
+          <option>Bars</option>
+          <option>Jagged curve</option>
+          <option>Smooth curve</option>
+          <option>Balls</option>
+        </select>
+      </div>
+      <div class="tool">
+        Alignment
+        <select>
+          <option>Center</option>
+          <option>Bottom</option>
+          <option>Top</option>
+        </select>
+      </div>
+      <div class="tool">
+        <p>Algorithm</p>
+        <div class="algodiv">
+          <span class="algo">Bubble sort</span>
+        </div>
+        <div class="algodiv">
+          <span class="algo">Selection sort</span>
+        </div>
+        <div class="algodiv">
+          <span class="algo">Insertion sort</span>
+        </div>
+        <div class="algodiv">
+          <span class="algo">Quick sort</span>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="startbtn">START</button>
+      </div>
+    </div>
+    <div id="main">
+      <canvas id="cmain">
+      </canvas>
+    </div>
+    <script src="sorters.js">
+    </script>
+    <script src="visualiser.js">
+    </script>
+    <script>
+      var ctx = docuemnt.getElementById('cmain').getContext('2d');
+      
+      //var vis = new Visualiser();
+      
+      ;
+    </script>
+  </body>
+</html>
