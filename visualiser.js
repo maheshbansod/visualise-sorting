@@ -26,7 +26,9 @@ class Visualiser {
     var hmax = ctx.canvas.height/3;
     var h1 = hmax/Math.max(...data);
 
-    ctx.fillStyle='#f00';
+    ctx.clearRect(0,0,width, ctx.canvas.height);
+
+    ctx.fillStyle='#d72';
     for(var i=0;i<n;i++) {
       ctx.fillRect(i*w1, hmax, w1, h1*data[i]);
     }

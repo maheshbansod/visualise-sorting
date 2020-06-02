@@ -8,7 +8,8 @@
   <body>
     <div id="tooldiv">
       <div class="tool">
-        <button>Upload data</button> <button>Generate random data</button>
+        <button>Upload data</button>
+        <button id="randomdatabtn">Generate random data</button>
       </div>
       <div class="tool">
         Data as
@@ -59,13 +60,25 @@
       ctx.canvas.width = document.getElementById('main').offsetWidth;
       ctx.canvas.height = document.getElementById('main').offsetHeight;
 
-      var data = Array.from({length: 10}, () => Math.floor(Math.random() * 100));
-      var sorter = new Sorter('bubble', data);
+      var sorter = new Sorter('bubble');
       
       var visualiser = new Visualiser(ctx);
       visualiser.setSorter(sorter);
 
+      generateRandomData();
+
       visualiser.showData();
+
+      function generateRandomData() {
+        var data = Array.from({length: 10}, () => Math.floor(Math.random() * 100));
+        sorter.setData(data);
+      }
+
+      document.getElementById('randomdatabtn').addEventListener('click',
+        () => {
+          generateRandomData();
+          visualiser.showData();
+      });
 
     </script>
   </body>
