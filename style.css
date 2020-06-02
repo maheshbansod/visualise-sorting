@@ -10,6 +10,10 @@ body {
   height:100%;
 }
 
+button::-moz-focus-inner {
+  border:0;
+}
+
 button, select {
   background-color:white;
   color: black;
