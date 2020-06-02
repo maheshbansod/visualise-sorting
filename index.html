@@ -44,6 +44,9 @@
           <span class="algo">Quick sort</span>
         </div>
       </div>
+      <div class="tool">
+        ---speed control---
+      </div>
       <div class="controls">
         <button id="startbtn">START</button>
       </div>
@@ -72,14 +75,14 @@
 
       visualiser.showData();
 
-      function generateRandomData() {
-        var data = Array.from({length: 10}, () => Math.floor(Math.random() * 100));
+      function generateRandomData(n=100, llim=0,ulim=100) {
+        var data = Array.from({length: n}, () => Math.floor(llim+Math.random() * (ulim-llim)));
         sorter.setData(data);
       }
 
       document.getElementById('randomdatabtn').addEventListener('click',
         () => {
-          generateRandomData();
+          generateRandomData(100);
           visualiser.showData();
       });
 
@@ -109,6 +112,11 @@
         selected = document.getElementById(algo);
         selected.appendChild(checkmark);
       }
+
+      document.getElementById('startbtn').addEventListener('click',()=>{
+        visualiser.playAnim(0);
+
+      });
 
     </script>
   </body>

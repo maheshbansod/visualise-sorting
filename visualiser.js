@@ -16,6 +16,24 @@ class Visualiser {
     this.sorter = sorter;
   }
 
+  playAnim(ts) {
+    if(!this.animstartt) {
+      this.animstartt = ts;
+      this.sorter.step();
+      this.showData();
+    }
+    var elapsed = ts - this.animstartt;
+    if(elapsed >= 100) {
+      this.sorter.step();
+
+      this.showData();
+    }
+
+    if(this.sorter.sorting) {
+      window.requestAnimationFrame(this.playAnim.bind(this));
+    }
+  }
+
   showData() {
     var ctx = this.ctx;
 
