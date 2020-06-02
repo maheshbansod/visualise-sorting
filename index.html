@@ -8,8 +8,8 @@
   <body>
     <div id="tooldiv">
       <div class="tool">
-        Upload data: <input type="file" id="inputdatabtn" />
-        <button id="randomdatabtn">Generate random data</button>
+        Upload data: <input type="file" id="inputdatabtn" /><br>
+        <input type="number" value="100" id="randomntextbox"><button id="randomdatabtn">Generate random data</button>
       </div>
       <div class="tool">
         Data as
@@ -82,7 +82,7 @@
 
       document.getElementById('randomdatabtn').addEventListener('click',
         () => {
-          generateRandomData(100);
+          generateRandomData(Number(document.getElementById('randomntextbox').value)||100);
           visualiser.showData();
       });
 
