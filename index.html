@@ -30,16 +30,17 @@
       </div>
       <div class="tool">
         <p>Algorithm</p>
-        <div class="algodiv">
+        <div class="algodiv" id="bubble">
           <span class="algo">Bubble sort</span>
+          <span class="checkmark">&check;</span>
         </div>
-        <div class="algodiv">
+        <div class="algodiv" id="selection">
           <span class="algo">Selection sort</span>
         </div>
-        <div class="algodiv">
+        <div class="algodiv" id="insertion">
           <span class="algo">Insertion sort</span>
         </div>
-        <div class="algodiv">
+        <div class="algodiv" id="quick">
           <span class="algo">Quick sort</span>
         </div>
       </div>
@@ -62,6 +63,8 @@
 
       var sorter = new Sorter('bubble');
       
+      var selected = document.getElementById('bubble');
+
       var visualiser = new Visualiser(ctx);
       visualiser.setSorter(sorter);
 
@@ -92,6 +95,19 @@
           visualiser.showData();
         });
         reader.readAsText(file);
+      }
+
+      Array.from(document.getElementsByClassName('algodiv')).forEach((elem)=>{
+        elem.addEventListener('click', (e)=> {
+          setSelectedAlgorithm(e.target.id);
+        });
+      });
+
+      function setSelectedAlgorithm(algo) {
+        sorter.setAlgorithm(algo);
+        var checkmark = selected.removeChild(selected.lastElementChild);
+        selected = document.getElementById(algo);
+        selected.appendChild(checkmark);
       }
 
     </script>
