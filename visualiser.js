@@ -26,7 +26,6 @@ class Visualiser {
     }
     var elapsed = ts - this.oldtime;
     if(elapsed >= 1000/this.speed) {
-      console.log(ts, this.speed)
       this.sorter.step();
 
       this.showData();
@@ -35,10 +34,16 @@ class Visualiser {
 
     if(this.sorter.sorting) {
       window.requestAnimationFrame(this.playAnim.bind(this));
+    } else {
+      this.showData(); //show data one last time
+      this.oldtime = null;
     }
   }
 
   showData() {
+    var sorting = false;
+    if(this.sorter.sorting)
+      sorting = true;
     var ctx = this.ctx;
 
     var n = this.sorter.data.length;
@@ -53,6 +58,12 @@ class Visualiser {
     ctx.fillStyle='#d72';
     for(var i=0;i<n;i++) {
       ctx.fillRect(i*w1, hmax, w1, h1*data[i]);
+    }
+    if(sorting) {
+      var {i,j} = this.sorter.state;
+      ctx.fillStyle='#ff0';
+      ctx.fillRect(j*w1, hmax, w1, h1*data[j]);
+      ctx.fillRect((j+1)*w1, hmax, w1, h1*data[j+1]);
     }
   }
 }

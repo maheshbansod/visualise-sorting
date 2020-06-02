@@ -43,7 +43,7 @@ class Sorter {
         this.sorting = false;
         this.state = null;
         this.animStartTime = null;
-      }
+      } else this.state.swaps = 0;
     }
     return state;
   }
