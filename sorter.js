@@ -26,19 +26,20 @@ class Sorter {
 
     if(!this.state) {
       this.state = {}
-      this.state.i = this.state.j = 0;
+      this.state.i = this.state.j = this.state.swaps = 0;
     }
     var state = this.state;
     
     if(this.data[this.state.j] > this.data[this.state.j+1]) {
       this.swap(this.state.j, this.state.j+1);
+      this.state.swaps++;
     }
 
     this.state.j++;
-    if(this.state.j >= this.data.length) {
+    if(this.state.j >= this.data.length-this.state.i) {
       this.state.j = 0;
       this.state.i++;
-      if(this.state.i >= this.data.length) {
+      if(this.state.i >= this.data.length || this.state.swaps == 0) {
         this.sorting = false;
         this.state = null;
         this.animStartTime = null;
