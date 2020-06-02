@@ -8,7 +8,7 @@
   <body>
     <div id="tooldiv">
       <div class="tool">
-        <button>Upload data</button>
+        Upload data: <input type="file" id="inputdatabtn" />
         <button id="randomdatabtn">Generate random data</button>
       </div>
       <div class="tool">
@@ -79,6 +79,20 @@
           generateRandomData();
           visualiser.showData();
       });
+
+      const inputElement = document.getElementById("inputdatabtn");
+      inputElement.addEventListener("change", handleFiles, false);
+      function handleFiles(e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = (function(e) {
+          var data = e.target.result.split(',').map((x)=>Number(x));
+          sorter.setData(data);
+          visualiser.showData();
+        });
+        reader.readAsText(file);
+      }
 
     </script>
   </body>
