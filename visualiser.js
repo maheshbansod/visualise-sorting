@@ -10,6 +10,8 @@ class Visualiser {
   constructor(ctx, dtype) {
     this.ctx = ctx;
     this.dtype = dtype;
+
+    this.speed = 1; //1 step per 1000 microseconds
   }
 
   setSorter(sorter) {
@@ -17,16 +19,18 @@ class Visualiser {
   }
 
   playAnim(ts) {
-    if(!this.animstartt) {
-      this.animstartt = ts;
+    if(!this.oldtime) {
+      this.oldtime = ts;
       this.sorter.step();
       this.showData();
     }
-    var elapsed = ts - this.animstartt;
-    if(elapsed >= 100) {
+    var elapsed = ts - this.oldtime;
+    if(elapsed >= 1000/this.speed) {
+      console.log(ts, this.speed)
       this.sorter.step();
 
       this.showData();
+      this.oldtime = ts;
     }
 
     if(this.sorter.sorting) {
