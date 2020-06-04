@@ -60,10 +60,22 @@ class Visualiser {
       ctx.fillRect(i*w1, hmax, w1, h1*data[i]);
     }
     if(sorting) {
-      var {i,j} = this.sorter.state;
-      ctx.fillStyle='#ff0';
-      ctx.fillRect(j*w1, hmax, w1, h1*data[j]);
-      ctx.fillRect((j+1)*w1, hmax, w1, h1*data[j+1]);
+      if(this.sorter.algo == 'bubble') {
+        var {i,j} = this.sorter.state;
+        
+        ctx.fillStyle='#ff0';
+        ctx.fillRect((j+1)*w1, hmax, w1, h1*data[j+1]);
+        ctx.fillStyle='#0f0';
+        ctx.fillRect((j)*w1, hmax, w1, h1*data[j]);
+      } else if(this.sorter.algo == 'selection') {
+        var {i,j, mini} = this.sorter.state;
+        ctx.fillStyle = '#0f0';
+        ctx.fillRect(mini*w1, hmax, w1, h1*data[mini]);
+        ctx.fillStyle = '#ff0';
+        ctx.fillRect(j*w1, hmax, w1, h1*data[j]);
+        ctx.fillStyle = '#0ff';
+        ctx.fillRect(i*w1, hmax, w1, h1*data[i]);
+      }
     }
   }
 }

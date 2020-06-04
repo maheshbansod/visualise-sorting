@@ -18,6 +18,44 @@ class Sorter {
   setStep() {
     if(this.algo == 'bubble')
       this.step = this.bubbleStep;
+    else if(this.algo == 'selection')
+      this.step = this.selectionStep;
+  }
+
+  selectionStep() {
+    this.sorting = true;
+
+    if(!this.state) {
+      this.state = {};
+      this.state.i = this.state.swaps = 0;
+      this.state.j = 1;
+      this.state.min = this.data[0];
+      this.state.mini = 0; //index of minimum
+    }
+
+    var j = this.state.j;
+
+    if(this.data[j] < this.state.min) {
+      this.state.min = this.data[j];
+      this.state.mini = j;
+    }
+    
+    this.state.j++;
+    if(this.state.j >= this.data.length) {
+      if(this.state.i != this.state.mini) {
+        this.swap(this.state.i, this.state.mini);
+        this.state.swaps++;
+      }
+      this.state.i++;
+      if(this.state.i >= this.data.length) {
+        this.state = null;
+        this.sorting = false;
+      } else {
+        this.state.j = this.state.i+1;
+        this.state.mini = this.state.i;
+        this.state.min = this.data[this.state.i];
+      }
+    }
   }
 
   bubbleStep() {

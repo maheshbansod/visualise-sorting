@@ -59,6 +59,5 @@
 
       document.getElementById('speedtextbox').addEventListener('change',(e)=> {
         visualiser.speed = Number(e.target.value)||visualiser.speed;
-        console.log(e.target.value);
       }
       );
