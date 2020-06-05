@@ -49,6 +49,8 @@ button:hover, select:hover {
   border:1px solid black;
   border-radius: 5px;
   margin: 5px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .algodiv:hover {

@@ -41,11 +41,14 @@
 
       Array.from(document.getElementsByClassName('algodiv')).forEach((elem)=>{
         elem.addEventListener('click', (e)=> {
-          setSelectedAlgorithm(e.target.id);
+          if(e.target == elem)
+            setSelectedAlgorithm(e.target.id);
         });
       });
 
       function setSelectedAlgorithm(algo) {
+        if(sorter.algo == algo)
+          return;
         sorter.setAlgorithm(algo);
         var checkmark = selected.removeChild(selected.lastElementChild);
         selected = document.getElementById(algo);
