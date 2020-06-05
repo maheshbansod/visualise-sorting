@@ -75,6 +75,15 @@ class Visualiser {
         ctx.fillRect(j*w1, hmax, w1, h1*data[j]);
         ctx.fillStyle = '#0ff';
         ctx.fillRect(i*w1, hmax, w1, h1*data[i]);
+      } else if(this.sorter.algo == 'insertion') {
+        var {i,j, elem} = this.sorter.state;
+        ctx.fillStyle = '#0f0';
+        if(data.length >= i+1)
+          ctx.fillRect((i+1)*w1, hmax, w1, h1*data[i+1]);
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(j*w1, hmax, w1, h1*data[j]);
+        ctx.fillStyle = '#ff0';
+        ctx.fillRect(j*w1, hmax, w1, h1*elem);
       }
     }
   }

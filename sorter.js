@@ -20,6 +20,35 @@ class Sorter {
       this.step = this.bubbleStep;
     else if(this.algo == 'selection')
       this.step = this.selectionStep;
+    else if(this.algo == 'insertion')
+      this.step = this.insertionStep;
+  }
+
+  insertionStep() {
+    this.sorting = true;
+
+    if(!this.state) {
+      this.state = {};
+      this.state.i = 0; //index of last element of sorted part of array
+      this.state.elem = this.data[1]; //first unsorted element
+      this.state.j = this.state.i+1;
+    }
+
+    var {j, elem} = this.state;
+    if(j > 0 && elem < this.data[j-1]) {
+      this.data[j]=this.data[j-1];
+      this.state.j--;
+    } else {
+      this.data[j] = elem;
+      this.state.i++;
+      if(this.state.i+1 >= this.data.length) {
+        this.state = null;
+        this.sorting = false;
+      } else {
+        this.state.j = this.state.i+1;
+        this.state.elem = this.data[this.state.j];
+      }
+    }
   }
 
   selectionStep() {
